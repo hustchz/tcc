@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chz.dao.CashAccountMapper">
+  <resultMap id="BaseResultMap" type="com.chz.entity.CashAccount">
+    <id column="CAPITAL_ACCOUNT_ID" jdbcType="BIGINT" property="capitalAccountId" />
+    <result column="BALANCE_AMOUNT" jdbcType="DECIMAL" property="balanceAmount" />
+    <result column="USER_ID" jdbcType="BIGINT" property="userId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    CAPITAL_ACCOUNT_ID, BALANCE_AMOUNT, USER_ID
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cap_capital_account
+    where CAPITAL_ACCOUNT_ID = #{capitalAccountId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from cap_capital_account
+    where CAPITAL_ACCOUNT_ID = #{capitalAccountId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chz.entity.CashAccount">
+    insert into cap_capital_account (CAPITAL_ACCOUNT_ID, BALANCE_AMOUNT, USER_ID
+      )
+    values (#{capitalAccountId,jdbcType=BIGINT}, #{balanceAmount,jdbcType=DECIMAL}, #{userId,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.chz.entity.CashAccount">
+    insert into cap_capital_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="capitalAccountId != null">
+        CAPITAL_ACCOUNT_ID,
+      </if>
+      <if test="balanceAmount != null">
+        BALANCE_AMOUNT,
+      </if>
+      <if test="userId != null">
+        USER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="capitalAccountId != null">
+        #{capitalAccountId,jdbcType=BIGINT},
+      </if>
+      <if test="balanceAmount != null">
+        #{balanceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chz.entity.CashAccount">
+    update cap_capital_account
+    <set>
+      <if test="balanceAmount != null">
+        BALANCE_AMOUNT = #{balanceAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="userId != null">
+        USER_ID = #{userId,jdbcType=BIGINT},
+      </if>
+    </set>
+    where CAPITAL_ACCOUNT_ID = #{capitalAccountId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chz.entity.CashAccount">
+    update cap_capital_account
+    set BALANCE_AMOUNT = #{balanceAmount,jdbcType=DECIMAL},
+      USER_ID = #{userId,jdbcType=BIGINT}
+    where CAPITAL_ACCOUNT_ID = #{capitalAccountId,jdbcType=BIGINT}
+  </update>
+</mapper>

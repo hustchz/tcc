@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chz.dao.OrderMapper">
+  <resultMap id="BaseResultMap" type="com.chz.entity.Order">
+    <id column="ORDER_ID" jdbcType="BIGINT" property="orderId" />
+    <result column="PAYER_USER_ID" jdbcType="BIGINT" property="payerUserId" />
+    <result column="PAYEE_USER_ID" jdbcType="BIGINT" property="payeeUserId" />
+    <result column="RED_PACKET_PAY_AMOUNT" jdbcType="DECIMAL" property="redPacketPayAmount" />
+    <result column="CAPITAL_PAY_AMOUNT" jdbcType="DECIMAL" property="capitalPayAmount" />
+    <result column="STATUS" jdbcType="VARCHAR" property="status" />
+    <result column="MERCHANT_ORDER_NO" jdbcType="VARCHAR" property="merchantOrderNo" />
+    <result column="VERSION" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ORDER_ID, PAYER_USER_ID, PAYEE_USER_ID, RED_PACKET_PAY_AMOUNT, CAPITAL_PAY_AMOUNT, 
+    STATUS, MERCHANT_ORDER_NO, VERSION
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ord_order
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ord_order
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chz.entity.Order">
+    insert into ord_order (ORDER_ID, PAYER_USER_ID, PAYEE_USER_ID, 
+      RED_PACKET_PAY_AMOUNT, CAPITAL_PAY_AMOUNT, STATUS, 
+      MERCHANT_ORDER_NO, VERSION)
+    values (#{orderId,jdbcType=BIGINT}, #{payerUserId,jdbcType=BIGINT}, #{payeeUserId,jdbcType=BIGINT}, 
+      #{redPacketPayAmount,jdbcType=DECIMAL}, #{capitalPayAmount,jdbcType=DECIMAL}, #{status,jdbcType=VARCHAR}, 
+      #{merchantOrderNo,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chz.entity.Order">
+    insert into ord_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        ORDER_ID,
+      </if>
+      <if test="payerUserId != null">
+        PAYER_USER_ID,
+      </if>
+      <if test="payeeUserId != null">
+        PAYEE_USER_ID,
+      </if>
+      <if test="redPacketPayAmount != null">
+        RED_PACKET_PAY_AMOUNT,
+      </if>
+      <if test="capitalPayAmount != null">
+        CAPITAL_PAY_AMOUNT,
+      </if>
+      <if test="status != null">
+        STATUS,
+      </if>
+      <if test="merchantOrderNo != null">
+        MERCHANT_ORDER_NO,
+      </if>
+      <if test="version != null">
+        VERSION,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=BIGINT},
+      </if>
+      <if test="payerUserId != null">
+        #{payerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="payeeUserId != null">
+        #{payeeUserId,jdbcType=BIGINT},
+      </if>
+      <if test="redPacketPayAmount != null">
+        #{redPacketPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="capitalPayAmount != null">
+        #{capitalPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantOrderNo != null">
+        #{merchantOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chz.entity.Order">
+    update ord_order
+    <set>
+      <if test="payerUserId != null">
+        PAYER_USER_ID = #{payerUserId,jdbcType=BIGINT},
+      </if>
+      <if test="payeeUserId != null">
+        PAYEE_USER_ID = #{payeeUserId,jdbcType=BIGINT},
+      </if>
+      <if test="redPacketPayAmount != null">
+        RED_PACKET_PAY_AMOUNT = #{redPacketPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="capitalPayAmount != null">
+        CAPITAL_PAY_AMOUNT = #{capitalPayAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        STATUS = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="merchantOrderNo != null">
+        MERCHANT_ORDER_NO = #{merchantOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        VERSION = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chz.entity.Order">
+    update ord_order
+    set PAYER_USER_ID = #{payerUserId,jdbcType=BIGINT},
+      PAYEE_USER_ID = #{payeeUserId,jdbcType=BIGINT},
+      RED_PACKET_PAY_AMOUNT = #{redPacketPayAmount,jdbcType=DECIMAL},
+      CAPITAL_PAY_AMOUNT = #{capitalPayAmount,jdbcType=DECIMAL},
+      STATUS = #{status,jdbcType=VARCHAR},
+      MERCHANT_ORDER_NO = #{merchantOrderNo,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=INTEGER}
+    where ORDER_ID = #{orderId,jdbcType=BIGINT}
+  </update>
+</mapper>

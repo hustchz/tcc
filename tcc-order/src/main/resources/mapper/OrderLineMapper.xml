@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chz.dao.OrderLineMapper">
+  <resultMap id="BaseResultMap" type="com.chz.entity.OrderLine">
+    <id column="ORDER_LINE_ID" jdbcType="BIGINT" property="orderLineId" />
+    <result column="PRODUCT_ID" jdbcType="BIGINT" property="productId" />
+    <result column="QUANTITY" jdbcType="DECIMAL" property="quantity" />
+    <result column="UNIT_PRICE" jdbcType="DECIMAL" property="unitPrice" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    ORDER_LINE_ID, PRODUCT_ID, QUANTITY, UNIT_PRICE
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ord_order_line
+    where ORDER_LINE_ID = #{orderLineId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from ord_order_line
+    where ORDER_LINE_ID = #{orderLineId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.chz.entity.OrderLine">
+    insert into ord_order_line (ORDER_LINE_ID, PRODUCT_ID, QUANTITY, 
+      UNIT_PRICE)
+    values (#{orderLineId,jdbcType=BIGINT}, #{productId,jdbcType=BIGINT}, #{quantity,jdbcType=DECIMAL}, 
+      #{unitPrice,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.chz.entity.OrderLine">
+    insert into ord_order_line
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderLineId != null">
+        ORDER_LINE_ID,
+      </if>
+      <if test="productId != null">
+        PRODUCT_ID,
+      </if>
+      <if test="quantity != null">
+        QUANTITY,
+      </if>
+      <if test="unitPrice != null">
+        UNIT_PRICE,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderLineId != null">
+        #{orderLineId,jdbcType=BIGINT},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null">
+        #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="unitPrice != null">
+        #{unitPrice,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.chz.entity.OrderLine">
+    update ord_order_line
+    <set>
+      <if test="productId != null">
+        PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      </if>
+      <if test="quantity != null">
+        QUANTITY = #{quantity,jdbcType=DECIMAL},
+      </if>
+      <if test="unitPrice != null">
+        UNIT_PRICE = #{unitPrice,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where ORDER_LINE_ID = #{orderLineId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.chz.entity.OrderLine">
+    update ord_order_line
+    set PRODUCT_ID = #{productId,jdbcType=BIGINT},
+      QUANTITY = #{quantity,jdbcType=DECIMAL},
+      UNIT_PRICE = #{unitPrice,jdbcType=DECIMAL}
+    where ORDER_LINE_ID = #{orderLineId,jdbcType=BIGINT}
+  </update>
+</mapper>
