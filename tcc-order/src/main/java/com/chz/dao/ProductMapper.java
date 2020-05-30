@@ -2,6 +2,8 @@ package com.chz.dao;
 
 import com.chz.entity.Product;
 
+import java.util.List;
+
 public interface ProductMapper {
     int deleteByPrimaryKey(Long productId);
 
@@ -14,4 +16,8 @@ public interface ProductMapper {
     int updateByPrimaryKeySelective(Product record);
 
     int updateByPrimaryKey(Product record);
+    /**
+     * 根据商铺ID 找所有商品
+     * */
+    List<Product> findByShopId(long shopId);
 }

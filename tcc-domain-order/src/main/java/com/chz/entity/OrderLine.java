@@ -8,11 +8,24 @@ public class OrderLine implements Serializable {
 
     private Long productId;
 
-    private BigDecimal quantity;
+    private Integer quantity;
 
+    /**
+     * 单价
+     * */
     private BigDecimal unitPrice;
 
     private static final long serialVersionUID = 1L;
+
+    public OrderLine() {
+
+    }
+
+    public OrderLine(Long productId, Integer quantity,BigDecimal unitPrice) {
+        this.productId = productId;
+        this.quantity = quantity;
+        this.unitPrice = unitPrice;
+    }
 
     public Long getOrderLineId() {
         return orderLineId;
@@ -30,11 +43,11 @@ public class OrderLine implements Serializable {
         this.productId = productId;
     }
 
-    public BigDecimal getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(BigDecimal quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
@@ -44,5 +57,8 @@ public class OrderLine implements Serializable {
 
     public void setUnitPrice(BigDecimal unitPrice) {
         this.unitPrice = unitPrice;
+    }
+    public BigDecimal getTotalAmount() {
+        return unitPrice.multiply(BigDecimal.valueOf(quantity));
     }
 }

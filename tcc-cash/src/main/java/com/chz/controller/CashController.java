@@ -1,7 +1,10 @@
 package com.chz.controller;
 
+import com.chz.service.CashService;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @ClassName : CashController
@@ -12,5 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/cash")
 @RestController
 public class CashController {
+    @Resource
+    private CashService cashService;
+    @RequestMapping("/test")
+    public String test() throws Exception {
+        return cashService.getCashAccountByUserId(2000)+"";
+    }
 
 }

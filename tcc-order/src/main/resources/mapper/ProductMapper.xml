@@ -79,4 +79,11 @@
       PRICE = #{price,jdbcType=DECIMAL}
     where PRODUCT_ID = #{productId,jdbcType=BIGINT}
   </update>
+
+  <select id="findByShopId" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM ord_product
+    WHERE SHOP_ID = #{shopId,javaType=java.lang.Long,jdbcType=BIGINT}
+  </select>
 </mapper>

@@ -15,6 +15,10 @@
         <module>tcc-domain-redpacket</module>
         <module>tcc-order</module>
         <module>tcc-redpacket</module>
+        <module>tcc-cash-api</module>
+        <module>tcc-redpacket-api</module>
+        <module>tcc-order-api</module>
+        <module>tcc-core</module>
     </modules>
 
     <properties>
@@ -70,11 +74,13 @@
                     <overwrite>true</overwrite>
                 </configuration>
             </plugin>
-<!--            &lt;!&ndash; spring boot  &ndash;&gt;-->
-<!--            <plugin>-->
-<!--                <groupId>org.springframework.boot</groupId>-->
-<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
