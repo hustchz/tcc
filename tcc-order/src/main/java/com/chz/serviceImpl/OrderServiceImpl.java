@@ -10,6 +10,7 @@ import com.chz.repository.ShopRepository;
 import com.chz.service.OrderService;
 import com.chz.service.PayService;
 import com.chz.util.Pair;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -54,8 +55,9 @@ public class OrderServiceImpl implements OrderService {
         Shop shop = shopRepository.findById(shopId);
         // 创建订单，订单状态默认为DRAFT(创建中)
         Order order = createOrder(payerUserId, shop.getOwnerUserId(), productQuantities);
-        // 支付
+
         try {
+            // 支付逻辑开始，将红包账户和现金账户相应扣款
             payService.makePayment(order, redPacketPayAmount, order.getTotalAmount().subtract(redPacketPayAmount));
 
         } catch (ConfirmingException confirmingException) {
@@ -68,5 +70,10 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return order.getMerchantOrderNo();
+    }
+
+    @Override
+    public void updateOrder(Order order) throws OptimisticLockingFailureException {
+         orderRepository.updateOrder(order);
     }
 }

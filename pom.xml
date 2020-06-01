@@ -19,6 +19,7 @@
         <module>tcc-redpacket-api</module>
         <module>tcc-order-api</module>
         <module>tcc-core</module>
+        <module>tcc-common</module>
     </modules>
 
     <properties>

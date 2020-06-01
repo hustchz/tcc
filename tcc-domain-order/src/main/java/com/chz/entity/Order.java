@@ -16,7 +16,7 @@ public class Order implements Serializable {
 
     private BigDecimal redPacketPayAmount;
 
-    private BigDecimal capitalPayAmount;
+    private BigDecimal cashPayment;
 
     private String status;
 
@@ -69,11 +69,11 @@ public class Order implements Serializable {
     }
 
     public BigDecimal getCapitalPayAmount() {
-        return capitalPayAmount;
+        return cashPayment;
     }
 
-    public void setCapitalPayAmount(BigDecimal capitalPayAmount) {
-        this.capitalPayAmount = capitalPayAmount;
+    public void setCapitalPayAmount(BigDecimal cashPayment) {
+        this.cashPayment = cashPayment;
     }
 
     public String getStatus() {
@@ -117,9 +117,9 @@ public class Order implements Serializable {
         return Collections.unmodifiableList(this.orderLines);
     }
 
-    public void pay(BigDecimal redPacketPayAmount, BigDecimal capitalPayAmount) {
+    public void pay(BigDecimal redPacketPayAmount, BigDecimal cashPayment) {
         this.redPacketPayAmount = redPacketPayAmount;
-        this.capitalPayAmount = capitalPayAmount;
+        this.cashPayment = cashPayment;
         this.status = "PAYING";
     }
     /**

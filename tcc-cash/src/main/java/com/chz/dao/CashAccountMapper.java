@@ -14,6 +14,9 @@ public interface CashAccountMapper {
     int updateByPrimaryKeySelective(CashAccount record);
 
     int updateByPrimaryKey(CashAccount record);
+
     CashAccount selectByUserId(Long userId);
+
+    int update(CashAccount record);
 
 }

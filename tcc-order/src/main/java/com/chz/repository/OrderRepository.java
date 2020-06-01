@@ -34,7 +34,6 @@ public class OrderRepository {
     public void updateOrder(Order order) {
         order.updateVersion();
         int effectCount = orderMapper.updateByPrimaryKey(order);
-
         if (effectCount < 1) {
             throw new OptimisticLockingFailureException("update order failed");
         }

@@ -14,4 +14,8 @@ public interface RedPacketAccountMapper {
     int updateByPrimaryKeySelective(RedPacketAccount record);
 
     int updateByPrimaryKey(RedPacketAccount record);
+
+    RedPacketAccount findByUserId(long userId);
+
+    int update(RedPacketAccount record);
 }

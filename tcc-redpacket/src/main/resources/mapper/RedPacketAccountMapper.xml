@@ -15,6 +15,14 @@
     from red_red_packet_account
     where RED_PACKET_ACCOUNT_ID = #{redPacketAccountId,jdbcType=BIGINT}
   </select>
+
+  <select id="findByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from red_red_packet_account
+    where USER_ID = #{userId,jdbcType=BIGINT}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from red_red_packet_account
     where RED_PACKET_ACCOUNT_ID = #{redPacketAccountId,jdbcType=BIGINT}
@@ -67,5 +75,11 @@
     set BALANCE_AMOUNT = #{balanceAmount,jdbcType=DECIMAL},
       USER_ID = #{userId,jdbcType=BIGINT}
     where RED_PACKET_ACCOUNT_ID = #{redPacketAccountId,jdbcType=BIGINT}
+  </update>
+
+  <update id="update" parameterType="com.chz.entity.RedPacketAccount">
+    update red_red_packet_account
+    set BALANCE_AMOUNT = #{balanceAmount,jdbcType=DECIMAL},
+    where RED_PACKET_ACCOUNT_ID = #{redPacketAccountId,jdbcType=BIGINT} and BALANCE_AMOUNT+#{freezeAmount}>=0
   </update>
 </mapper>

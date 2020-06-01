@@ -14,4 +14,7 @@ public interface CashTradeOrderMapper {
     int updateByPrimaryKeySelective(CashTradeOrder record);
 
     int updateByPrimaryKey(CashTradeOrder record);
+
+    CashTradeOrder findByOrderId(String orderId);
+
 }

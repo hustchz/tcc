@@ -1,6 +1,7 @@
 package com.chz.serviceImpl;
 import com.chz.dao.RedPacketAccountMapper;
 import com.chz.entity.RedPacketAccount;
+import com.chz.exception.InsufficientBalanceException;
 import com.chz.service.RedPacketService;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,21 @@ public class RedPacketServiceImpl implements RedPacketService {
             return BigDecimal.ZERO;
         }
         return redPacketAccount.getBalanceAmount();
+    }
+
+    @Override
+    public RedPacketAccount findByUserId(long userId) {
+        return redPacketAccountMapper.findByUserId(userId);
+    }
+
+    /**
+     * 数据库层面对数据有效性进一步保证
+     * */
+    @Override
+    public void update(RedPacketAccount account) {
+        int row = redPacketAccountMapper.update(account);
+        if (row < 1){
+            throw new InsufficientBalanceException("红包资源不足");
+        }
     }
 }

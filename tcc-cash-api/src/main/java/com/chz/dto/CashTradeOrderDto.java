@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 /**
  * 现金账户DTO
  */
-public class CapitalTradeOrderDto implements Serializable {
+public class CashTradeOrderDto implements Serializable {
 
     private static final long serialVersionUID = 6627401903410124642L;
     

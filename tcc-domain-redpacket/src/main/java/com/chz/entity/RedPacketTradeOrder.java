@@ -14,9 +14,9 @@ public class RedPacketTradeOrder implements Serializable {
 
     private BigDecimal amount;
 
-    private String status;
+    private String status = "DRAFT";
 
-    private Integer version;
+    private Integer version = 1;
 
     private static final long serialVersionUID = 1L;
 
@@ -75,4 +75,12 @@ public class RedPacketTradeOrder implements Serializable {
     public void setVersion(Integer version) {
         this.version = version;
     }
+
+    public RedPacketTradeOrder(Long selfUserId, Long oppositeUserId, String merchantOrderNo, BigDecimal amount) {
+        this.selfUserId = selfUserId;
+        this.oppositeUserId = oppositeUserId;
+        this.merchantOrderNo = merchantOrderNo;
+        this.amount = amount;
+    }
+    public RedPacketTradeOrder(){}
 }

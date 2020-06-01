@@ -76,4 +76,10 @@
       USER_ID = #{userId,jdbcType=BIGINT}
     where CAPITAL_ACCOUNT_ID = #{capitalAccountId,jdbcType=BIGINT}
   </update>
+
+  <update id="update" parameterType="com.chz.entity.CashAccount">
+    update cap_capital_account
+    set BALANCE_AMOUNT = #{balanceAmount,jdbcType=DECIMAL}
+    WHERE CAPITAL_ACCOUNT_ID = #{capitalAccountId} AND BALANCE_AMOUNT+#{freezeAmount}>=0
+  </update>
 </mapper>

@@ -7,6 +7,7 @@ import java.math.BigDecimal;
  * 现金交易实体类
  * */
 public class CashTradeOrder implements Serializable {
+
     private Long id;
 
     private Long selfUserId;
@@ -17,9 +18,9 @@ public class CashTradeOrder implements Serializable {
 
     private BigDecimal amount;
 
-    private String status;
+    private String status = "DRAFT";
 
-    private Integer version;
+    private Integer version = 1;
 
     private static final long serialVersionUID = 1L;
 
@@ -77,5 +78,14 @@ public class CashTradeOrder implements Serializable {
 
     public void setVersion(Integer version) {
         this.version = version;
+    }
+    public CashTradeOrder(){
+
+    }
+    public CashTradeOrder(Long selfUserId, Long oppositeUserId, String merchantOrderNo, BigDecimal amount) {
+        this.selfUserId = selfUserId;
+        this.oppositeUserId = oppositeUserId;
+        this.merchantOrderNo = merchantOrderNo;
+        this.amount = amount;
     }
 }

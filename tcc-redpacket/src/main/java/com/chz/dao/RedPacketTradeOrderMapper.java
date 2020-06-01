@@ -14,4 +14,7 @@ public interface RedPacketTradeOrderMapper {
     int updateByPrimaryKeySelective(RedPacketTradeOrder record);
 
     int updateByPrimaryKey(RedPacketTradeOrder record);
+
+    RedPacketTradeOrder findByOrderId(String orderId);
+
 }

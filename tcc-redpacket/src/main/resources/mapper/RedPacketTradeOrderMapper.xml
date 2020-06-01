@@ -19,6 +19,14 @@
     from red_trade_order
     where ID = #{id,jdbcType=BIGINT}
   </select>
+
+  <select id="findByOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from red_trade_order
+    where MERCHANT_ORDER_NO = #{orderId}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from red_trade_order
     where ID = #{id,jdbcType=BIGINT}
