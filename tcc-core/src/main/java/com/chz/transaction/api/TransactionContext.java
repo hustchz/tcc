@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  * @ClassName : TransactionContext
- * @Description : 事务上下文实体
+ * @Description : 事务上下文实体，可以通过事务上下文实体进一步得到事务对象
  * @Author : 陈寒哲
  * @Date: 2020-06-01 14:38
  */

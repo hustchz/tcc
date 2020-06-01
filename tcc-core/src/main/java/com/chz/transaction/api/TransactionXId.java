@@ -8,7 +8,7 @@ import java.util.UUID;
 
 /**
  * @ClassName : Transaction
- * @Description : 事务实体
+ * @Description : 全局、分支事务记录
  * @Author : 陈寒哲
  * @Date: 2020-06-01 14:40
  */
